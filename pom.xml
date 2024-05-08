@@ -8,13 +8,17 @@
 		<version>3.3.0-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.foody</groupId>
+	<groupId>com.foody.baseRepo</groupId>
 	<artifactId>ProjectX</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>ProjectX</name>
 	<description>ProjectX</description>
+	<modules>
+		<module>dtos</module>
+	</modules>
 	<properties>
-		<java.version>22</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -136,6 +140,18 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- manually added dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>5.6.15.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vladmihalcea</groupId>
+			<artifactId>hibernate-types-55</artifactId>
+			<version>2.19.2</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
