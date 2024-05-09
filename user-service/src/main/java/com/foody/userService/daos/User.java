@@ -1,27 +1,25 @@
-package com.foody.dtos.daos;
+package com.foody.userService.daos;
 
+import com.foody.dtos.userDtos.dto.AddressDto;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "users", schema = "public")
 @EntityListeners(AuditingEntityListener.class)
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class User {
     @Id
@@ -41,6 +39,7 @@ public class User {
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
-    @Column(name = "address", columnDefinition = "jsonb")
-    private String address;
+    @Column(name = "addresses", columnDefinition = "jsonb")
+    @Type(type = "jsonb")
+    private List<AddressDto> addresses;
 }
