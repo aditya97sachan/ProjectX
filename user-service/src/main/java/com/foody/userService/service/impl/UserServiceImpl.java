@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public CreateUserResponse createUser(CreateUserRequest request) {
-        userRepository.findByPhone(request.getPhone()).ifPresent(user -> {
+        userRepository.findByPhone(request.getEmail()).ifPresent(user -> {
             throw new DuplicateDataException("User with phone " + user.getPhone() + " is already registered");
         });
 
